@@ -5,7 +5,9 @@ Reads messages from the latest tagged revision to the tip revision in `develop` 
 
 ## Usage
 
-Put `[lein-hgnotes "0.3.0"]` into the `:plugins` vector of your project.clj.
+[![Clojars Project](http://clojars.org/lupapiste/lein-hgnotes/latest-version.svg)](http://clojars.org/lupapiste/lein-hgnotes)
+
+Put `[lupapiste/lein-hgnotes "0.3.0"]` into the `:plugins` vector of your project.clj.
 
 Run `lein hgnotes` before packaging your Clojure software.
 
