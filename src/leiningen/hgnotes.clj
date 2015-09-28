@@ -3,6 +3,12 @@
             [clojure.string :as s]
             [clojure.java.io :as io]))
 
+(defn ensure-dir! [dir-name]
+  (let [dir (clojure.java.io/file dir-name)]
+    (if (.exists dir)
+      (.isDirectory dir)
+      (.mkdir dir))))
+
 (defn split [line] (rest (re-find #"^(.*?);(.*?);(.*?);(.*)" line)))
 
 (defn parse [row] (zipmap [:node :date :author :desc] row))
@@ -19,5 +25,11 @@
         revision (last (re-find #" (.*)\n" output))]
     revision))
 
+(def filename "hgnotes.edn")
+
 (defn hgnotes [project & args]
-  (spit "./resources/hgnotes.edn" (log (latest-revision))))
+  (let [target-dir-name "resources"
+        separator (java.io.File/separator)]
+    (if (ensure-dir! target-dir-name)
+      (spit (str target-dir-name separator filename) (log (latest-revision)))
+      (throw (Exception. (str target-dir-name " is not a directory!"))))))

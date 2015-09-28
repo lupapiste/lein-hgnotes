@@ -1,4 +1,4 @@
-(defproject lupapiste/lein-hgnotes "0.3.0"
+(defproject lupapiste/lein-hgnotes "0.3.1-SNAPSHOT"
   :description "Generates an edn file from the latest mercurial commit messages."
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"
