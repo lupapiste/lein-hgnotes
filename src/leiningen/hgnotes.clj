@@ -4,7 +4,7 @@
             [clojure.java.io :as io]))
 
 (defn ensure-dir! [dir-name]
-  (let [dir (clojure.java.io/file dir-name)]
+  (let [dir (io/file dir-name)]
     (if (.exists dir)
       (.isDirectory dir)
       (.mkdir dir))))
@@ -28,8 +28,10 @@
 (def filename "hgnotes.edn")
 
 (defn hgnotes [project & args]
-  (let [target-dir-name "resources"
-        separator (java.io.File/separator)]
-    (if (ensure-dir! target-dir-name)
-      (spit (str target-dir-name separator filename) (log (latest-revision)))
-      (throw (Exception. (str target-dir-name " is not a directory!"))))))
+  (if (.isDirectory (io/file ".hg"))
+    (let [target-dir-name "resources"
+          separator (java.io.File/separator)]
+      (if (ensure-dir! target-dir-name)
+        (spit (str target-dir-name separator filename) (log (latest-revision)))
+        (throw (Exception. (str target-dir-name " is not a directory!")))))
+    (throw (Exception. (str ".hg not found!")))))
