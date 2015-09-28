@@ -27,6 +27,6 @@ The data is a sequence of maps, that contain
 
 ## License
 
-Copyright © 2013-2015 Solita Oy
+Copyright © 2013-2015 [Solita Oy](http://www.solita.fi/)
 
 Distributed under the Eclipse Public License, the same as Clojure.
